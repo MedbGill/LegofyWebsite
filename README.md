@@ -15,5 +15,7 @@ TODO: Link once hosted
 
 # Credits
 Juan Potato - [Legofy](https://github.com/JuanPotato/Legofy)
+
 Wild Honey - [Legofy JS](https://github.com/Wildhoney/Legofy)
+
 Kitty Giraudel - [Legofy Node](https://github.com/KittyGiraudel/node-legofy)
