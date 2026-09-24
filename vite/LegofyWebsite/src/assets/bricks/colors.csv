@@ -1,0 +1,47 @@
+id,name,Legoname,rgb,legoID
+1,White,White,FFFFFF,1
+2,Tan,Brick Yellow,E4CD9E,5
+3,Yellow,Bright Yellow,F2CD37,24
+4,Orange,Bright Orange,FE8A18,106
+5,Red,Bright Red,C91A09,21
+6,Green,Dark Green,237841,28
+7,Blue,Bright Blue,0055BF,23
+11,Black,Black,05131D,26
+28,Nougat,Nougat,D09168,18
+34,Lime,Bright Yellowish,BBE90B,119
+36,Bright Green,Bright Green,4B9F4A,37
+39,Dark Turquoise,Bright Bluish Green,008F9B,107
+42,Medium Blue,Medium Blue,5A93DB,102
+47,Dark Pink,Bright Purple,C870A0,221
+48,Sand Green,Sand Green,A0BCAC,151
+55,Sand Blue,Sand Blue,6074A1,135
+59,Dark Red,New Dark Red,720E0F,154
+63,Dark Blue,Earth Blue,0A3463,140
+68,Dark Orange,Dark Orange,A95500,38
+69,Dark Tan,Sand Yellow,958A73,138
+71,Magenta,Bright Reddish Violet,923978,124
+80,Dark Green,Earth Green,184632,141
+85,Dark Bluish Gray,Dark Stone Grey,6C6E68,199
+86,Light Bluish Gray,Medium Stone,A0A5A9,194
+88,Reddish Brown,Reddish Brown,582A12,192
+89,Dark Purple,Medium Lilac,3F3691,268
+90,Light Nougat,Light Nougat,F6D7B3,283
+103,Bright Light Yellow,Cool Yellow,FFF03A,226
+104,Bright Pink,Light Purple,E4ADC8,222
+105,Bright Light Blue,Light Royal Blue,9FC3E9,212
+110,Bright Light Orange,Flame Yellowish Orange,F8BB3D,191
+120,Dark Brown,Dark Brown,352100,308
+150,Medium Nougat,Medium Nougat,AA7D55,312
+152,Light Aqua,Aqua,ADC3C0,323
+153,Dark Azure,Dark Azure,078BC9,321
+154,Lavender,Lavender,E1D5ED,325
+155,Olive Green,Olive Green,9B9A5A,330
+156,Medium Azure,Medium Azure,36AEBF,322
+157,Medium Lavender,Medium Lavender,AC78BA,324
+158,Yellowish Green,Spring Yellowish Green,DFEEA5,326
+167,Reddish Orange,Reddish Orange,CA4C0B,402
+174,Blue Violet,Blue Violet,A3A9FF,431
+175,Warm Pink,Warm Pink,F6B7BF,430
+220,Coral,Vibrant Coral,FF698F,353
+236,Neon Yellow,Vibrant Yellow,EBD800,368
+1089,Medium Tan,Warm Tan,CCA373,634
