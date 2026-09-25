@@ -6,6 +6,7 @@ import { useRef, type ChangeEvent } from 'react'
 
 import Brickerize from './lego_convert/brickize'
 
+
 const Instructions = () => {
 
   return (
@@ -20,6 +21,7 @@ const Instructions = () => {
 }
 async function handleFileUpload(event: Event, reactError: React.Dispatch<React.SetStateAction<string>>) {
 
+  reactError("");
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
   if (!file) {
@@ -37,7 +39,10 @@ async function handleFileUpload(event: Event, reactError: React.Dispatch<React.S
     const fileData = await readFileAsDataURL(file);
     const source_img = document.getElementById("start_image") as HTMLImageElement;
     // we have data, assign it as src to the image.
+
     source_img.src = fileData as string;
+
+
 
     // We show the user the file they uploaded. As we process, if it takes time we can have a loading
     // graphic show on top of it, something like "Legofying!"
@@ -50,11 +55,37 @@ async function handleFileUpload(event: Event, reactError: React.Dispatch<React.S
     const { naturalWidth: width, naturalHeight: height } = source_img;
     const canvas = new OffscreenCanvas(width, height);
     const ctx = canvas.getContext("2d");
-    ctx?.drawImage(source_img, 0, 0);
 
-    const data = ctx?.getImageData(0, 0, width, height);
+    // Clamp the size because we don't want to do any 10k by 10k images here. Too slow and not needed imo.
 
-    // We have the image
+    // Cap the pixels to 480 by 480 and pixel size 15 to make small, easy to render images of 32 by 32 studs
+    // cap the pixels to 720 by 720 at pixelSize 15 to make small, easy to render images of 48 by 48 studs.
+    let renderedWidth = 0;
+    let renderedHeight = 0;
+    if (width > height) {
+      renderedWidth = Math.min(720, width);
+      renderedHeight = renderedWidth * (height / width);
+    } else {
+      renderedHeight = Math.min(720, height);
+      renderedWidth = renderedHeight * (width / height);
+    }
+
+    // Base plates are 32 stud by 32 or 48 by 48 for standard offerrings. Try to start by setting the image to either one of those.
+
+
+    ctx?.drawImage(source_img, 0, 0, renderedWidth, renderedHeight);
+
+    source_img.width = renderedWidth;
+    source_img.height = renderedHeight;
+
+    const data = ctx?.getImageData(0, 0, renderedWidth, renderedHeight);
+    const brickerize = new Brickerize();
+
+    // let's get a better standard starting size based on the image provided. Let's try to clamp to
+
+    // Since I'm rendering the image in 720 by 720 just to have it show cleaner, have the bricks be 15x15 pixels
+    brickerize.processImage(data as ImageData, 15);
+    // We have the image data, time to do stuff to it.
 
 
   } catch (error) {
@@ -111,6 +142,27 @@ async function readFileAsDataURL(file: File): Promise<string | ArrayBuffer | nul
   });
 }
 
+function dataURL_To_ArrayBuffer(dataURL: string) {
+  // Extract the base64 encoded string
+  const base64Part = dataURL.split(',')[1];
+
+  // Decode base64 to a raw binary string
+  const byteString = atob(base64Part);
+
+  // Create an ArrayBuffer with the exact size
+  const buffer = new ArrayBuffer(byteString.length);
+
+  // Create a typed array view to populate the buffer
+  const uintArray = new Uint8Array(buffer);
+
+  for (let i = 0; i < byteString.length; i++) {
+    uintArray[i] = byteString.charCodeAt(i);
+  }
+
+  return buffer;
+}
+
+
 function App() {
   return (
     <div id="page">
@@ -118,6 +170,8 @@ function App() {
       <UploadButton />
       <img src="null" id="start_image"></img>
       <canvas id="on_screen_canvas"></canvas>
+      <img src="null" id="end_image"></img>
+      <img src="/src/assets/bricks/1x1.png" id="1x1"></img>
     </div>
 
   )
